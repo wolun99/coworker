@@ -1,30 +1,29 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+	<div>
+		<div class="nav_inner">
+			<nav>
+				<div class="main_logo_wrap">
+					<router-link to="/" class="main_logo">COWORKER</router-link>
+				</div>
+				<div class="menu_wrap">
+					<span v-if="$store.state.userName !== ''"
+						>{{ $store.state.userName }}님</span
+					>
+					<router-link to="/">Home</router-link>
+					<router-link to="/login" v-if="$store.state.userName == ''"
+						>로그인</router-link
+					><router-link to="/" v-else-if="$store.state.userName !== null"
+						>로그아웃</router-link
+					>
+				</div>
+			</nav>
+		</div>
+		<router-view />
+	</div>
 </template>
-
+<script>
+export default {};
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+@import './assets/css/main.css';
 </style>
