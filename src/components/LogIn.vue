@@ -27,7 +27,12 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+	getAuth,
+	signInWithEmailAndPassword,
+	setPersistence,
+	browserSessionPersistence,
+} from 'firebase/auth';
 export default {
 	data() {
 		return {
@@ -43,6 +48,7 @@ export default {
 					alert('로그인 하셨습니다');
 					// this.$router.push('/');
 					this.getUserName(userData);
+					this.loginContinue();
 					this.userNameVal(userData);
 				})
 				.catch(() => {
@@ -58,6 +64,24 @@ export default {
 			} else {
 				this.$router.push('/');
 			}
+		},
+		loginContinue() {
+			const auth = getAuth();
+			setPersistence(auth, browserSessionPersistence)
+				.then(() => {
+					return signInWithEmailAndPassword(
+						auth,
+						this.userId,
+						this.userPassword,
+					);
+				})
+				.catch(error => {
+					// Handle Errors here.
+					const errorCode = error.code;
+					console.log(errorCode);
+					const errorMessage = error.message;
+					console.log(errorMessage);
+				});
 		},
 	},
 };

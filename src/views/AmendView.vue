@@ -1,15 +1,15 @@
 <template>
 	<div>
-		<div class="banner"></div>
-		<Detail></Detail>
+		<h2 class="title">수정하기</h2>
+		<Amend></Amend>
 	</div>
 </template>
 
 <script>
-import Detail from '@/components/Detail.vue';
+import Amend from '@/components/Amend';
 export default {
 	components: {
-		Detail,
+		Amend,
 	},
 };
 </script>

@@ -31,6 +31,11 @@ const routes = [
 		name: 'detail',
 		component: () => import('@/views/DetailView.vue'),
 	},
+	{
+		path: '/amend/:id',
+		name: 'amend',
+		component: () => import('@/views/AmendView.vue'),
+	},
 ];
 
 const router = createRouter({

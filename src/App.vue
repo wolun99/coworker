@@ -12,7 +12,8 @@
 					<router-link to="/">Home</router-link>
 					<router-link to="/login" v-if="$store.state.userName == ''"
 						>로그인</router-link
-					><router-link to="/" v-else-if="$store.state.userName !== null"
+					>
+					<router-link to="/" v-else-if="$store.state.userName !== null"
 						>로그아웃</router-link
 					>
 				</div>

@@ -16,7 +16,7 @@
 
 <script>
 import { db } from '@/main';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 
 import HomeList from '@/components/Homelist.vue';
 export default {
@@ -31,10 +31,10 @@ export default {
 			this.$router.push('/write');
 		},
 		async getList() {
-			const querySnapshot = await getDocs(collection(db, 'lists'));
-			querySnapshot.forEach(doc => {
-				this.lists.push(doc.data());
-			});
+			const list = collection(db, 'lists');
+			const q = query(list, orderBy('contentId', 'desc'), limit(3));
+			const data = await getDocs(q);
+			data.docs.map(doc => this.lists.push({ ...doc.data() }));
 		},
 	},
 	components: {

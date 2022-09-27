@@ -26,7 +26,7 @@
 
 <script>
 import { db } from '@/main';
-import { collection, addDoc, updateDoc, doc, getDoc } from 'firebase/firestore';
+import { collection, doc, setDoc, updateDoc, getDoc } from 'firebase/firestore';
 
 export default {
 	name: 'WriteComponent',
@@ -43,7 +43,8 @@ export default {
 		},
 		async submitContent() {
 			try {
-				await addDoc(collection(db, 'lists'), {
+				const listRef = collection(db, 'lists');
+				await setDoc(doc(listRef, `content ${this.contentId}`), {
 					title: this.title,
 					content: this.content,
 					uid: this.$store.state.userUid,
@@ -76,67 +77,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.write_wrap {
-	width: 1000px;
-	margin: 0 auto;
-}
-
-label {
-	display: inline-block;
-	width: 200px;
-	text-align: center;
-}
-
-.title_wrap input {
-	width: 700px;
-	height: 40px;
-	padding-left: 20px;
-	outline: none;
-	border: 1px solid #cdcdcd;
-}
-
-.content_wrap {
-	margin-top: 50px;
-}
-
-.content_wrap textarea {
-	width: 700px;
-	outline: none;
-	border: 1px solid #cdcdcd;
-	resize: none;
-	padding-top: 10px;
-	padding-left: 20px;
-}
-
-.content_wrap label {
-	position: relative;
-	top: -75px;
-}
-
-.btn_wrap {
-	text-align: center;
-}
-
-button {
-	display: inline-block;
-	align-items: center;
-	width: 300px;
-	justify-content: center;
-	text-align: center;
-	min-width: 110px;
-	padding: 0 20px;
-	border: 1px solid transparent;
-	border-radius: 3px;
-	height: 60px;
-	color: #fff;
-	background: #3090d6;
-	margin-top: 60px;
-	font-size: 23px;
-	margin-left: 20px;
-}
-
-button:hover {
-	cursor: pointer;
-}
-</style>
+<style></style>

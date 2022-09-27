@@ -13,7 +13,7 @@ export default {
 	},
 	methods: {
 		goDetail() {
-			this.$router.push('/detail/');
+			this.$router.push('/detail/' + this.list.contentId);
 		},
 	},
 };
