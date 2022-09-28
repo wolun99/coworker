@@ -33,6 +33,8 @@ export default {
 	name: 'AmendComponent',
 	data() {
 		return {
+			title: '',
+			content: '',
 			formdata: {},
 			contentId: null,
 		};
@@ -51,23 +53,24 @@ export default {
 					nickname: this.$store.state.userName,
 					contentId: this.contentId,
 				});
-				this.$router.push('/');
+				this.$router.push(`/detail/${this.contentId}`);
 			} catch (e) {
 				console.error('Error adding document: ', e);
 			}
 		},
 		async amendForm() {
-			const docRef = doc(db, 'cities', 'SF');
+			const docRef = doc(db, 'lists', `content ${this.contentId}`);
 			const docSnap = await getDoc(docRef);
-			this.formdata = docSnap.data();
+			this.title = docSnap.data().title;
+			this.content = docSnap.data().content;
 		},
 		getContentId() {
 			this.contentId = this.$route.params.id;
 		},
 	},
 	mounted() {
-		this.amendForm();
 		this.getContentId();
+		this.amendForm();
 	},
 };
 </script>

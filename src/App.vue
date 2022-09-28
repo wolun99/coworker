@@ -13,7 +13,10 @@
 					<router-link to="/login" v-if="$store.state.userName == ''"
 						>로그인</router-link
 					>
-					<router-link to="/" v-else-if="$store.state.userName !== null"
+					<router-link
+						to="/"
+						v-else-if="$store.state.userName !== null"
+						@click="logOut()"
 						>로그아웃</router-link
 					>
 				</div>
@@ -23,7 +26,33 @@
 	</div>
 </template>
 <script>
-export default {};
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+export default {
+	methods: {
+		isLogin() {
+			const auth = getAuth();
+			onAuthStateChanged(auth, user => {
+				if (user) {
+					this.$store.commit('getUserName', user);
+				}
+			});
+		},
+		logOut() {
+			const auth = getAuth();
+			signOut(auth)
+				.then(() => {
+					this.$store.commit('getUserName', '');
+				})
+				.catch(error => {
+					// An error happened.
+					console.log(error);
+				});
+		},
+	},
+	mounted() {
+		this.isLogin();
+	},
+};
 </script>
 <style>
 @import './assets/css/main.css';

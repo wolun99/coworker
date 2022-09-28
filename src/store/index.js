@@ -5,11 +5,20 @@ export default createStore({
 		userName: '',
 		userUid: '',
 	},
-	getters: {},
+	getters: {
+		isLogined(state) {
+			return state.userUid != '';
+		},
+	},
 	mutations: {
 		getUserName(state, payload) {
-			state.userName = payload.displayName;
-			state.userUid = payload.uid;
+			if (payload == '') {
+				state.userName = '';
+				state.userUid = '';
+			} else {
+				state.userName = payload.displayName;
+				state.userUid = payload.uid;
+			}
 		},
 	},
 	actions: {},

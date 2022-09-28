@@ -8,6 +8,18 @@ a{
   text-decoration: none;
 }
 
+.menu_wrap{
+  width:300px;
+  text-align: right;
+}
+
+.menu_wrap *{
+  width:100px;
+  text-align: center;
+  display:inline-block;
+  height:59px;
+}
+
 .nav_inner{
   width:1200px;
   margin:0 auto;
@@ -40,11 +52,6 @@ a{
 
 .menu_wrap a:hover{
   border-bottom:2px solid #000;
-}
-
-.menu_wrap a:first-child{
-  margin-right:20px;
-  
 }
 
 .banner{
@@ -84,6 +91,10 @@ a{
   display: inline-block;
   margin-top:40px;
   margin-right:65px;
+}
+
+.list_wrap:hover{
+  cursor: pointer;
 }
 
 .list_wrap:nth-child(4n){
@@ -149,10 +160,13 @@ a{
   }
   
   .comment_wrap{
-    height:40px;
+    height:80px;
     text-align: center;
-    margin-top:30px;
+    margin-top:40px;
+    padding-bottom:40px;
+    border-bottom:1px solid #ccc;
   }
+
 
   .comment_wrap input{
     width:600px;
@@ -179,15 +193,20 @@ a{
     font-weight:bold;
     line-height: 40px;
   }
-  
+
   .commentList_wrap {
     width: 100%;
-    border: 1px solid #ccc;
+    border-bottom:1px solid #ccc;
     height: 100px;
-    border-right: none;
-    border-left: none;
     padding: 10px 20px;
-    margin-top: 30px;
+    position:relative;
+  }
+
+  .commentList_wrap button{
+    position:absolute;
+    top:50%;
+    right:30px;
+    transform:translateY(-50%)
   }
   
   .comment_id {
@@ -199,7 +218,7 @@ a{
   .comment_content {
     font-size: 20px;
     margin-top: 15px;
-    display: block;
+    display: inline-block;
   }
 
   .write_wrap {

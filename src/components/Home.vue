@@ -32,7 +32,7 @@ export default {
 		},
 		async getList() {
 			const list = collection(db, 'lists');
-			const q = query(list, orderBy('contentId', 'desc'), limit(3));
+			const q = query(list, orderBy('contentId', 'desc'), limit(8));
 			const data = await getDocs(q);
 			data.docs.map(doc => this.lists.push({ ...doc.data() }));
 		},

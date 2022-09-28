@@ -11,16 +11,25 @@
 			</form>
 		</div>
 		<CommentList
+			:index="i"
 			:comments="comments"
-			v-for="comments in userComment"
-			:key="comments"
+			v-for="(comments, i) in userComment"
+			:key="i"
+			@deleteComment="deleteComment(), (commentIndex = $event)"
 		></CommentList>
 	</div>
 </template>
 
 <script>
 import { db } from '@/main';
-import { collection, doc, setDoc, getDoc } from 'firebase/firestore';
+import {
+	collection,
+	doc,
+	setDoc,
+	getDoc,
+	updateDoc,
+	deleteField,
+} from 'firebase/firestore';
 import CommentList from '@/components/CommentList.vue';
 export default {
 	name: 'CommentComponent',
@@ -30,6 +39,7 @@ export default {
 			userComment: [],
 			userid: '',
 			commentCount: 0,
+			commentIndex: null,
 		};
 	},
 	components: {
@@ -50,6 +60,7 @@ export default {
 		initForm() {
 			this.comment = '';
 		},
+
 		addComment() {
 			this.userComment.push({
 				usernick: this.$store.state.userName,
@@ -62,8 +73,30 @@ export default {
 		},
 		async addCommentList() {
 			const docRef = doc(db, 'comment', `comment ${this.userid}`);
-			const docSnap = await getDoc(docRef);
-			this.userComment = docSnap.data().comment;
+			const result = await getDoc(docRef);
+			console.log(result.data().comment);
+			if (result.data().comment !== undefined) {
+				this.userComment = result.data().comment;
+			} else {
+				this.userComment = [];
+			}
+		},
+		async deleteComment() {
+			this.userComment.splice(this.commentIndex, 1);
+			console.log(this.userComment);
+			const listRef = doc(db, 'comment', `comment ${this.userid}`);
+			await updateDoc(listRef, {
+				comment: deleteField(),
+			});
+			this.addField();
+		},
+		async addField() {
+			const commentRef = collection(db, 'comment');
+			await setDoc(doc(commentRef, `comment ${this.userid}`), {
+				comment: this.userComment,
+			}).then(() => {
+				this.addCommentList();
+			});
 		},
 	},
 	mounted() {

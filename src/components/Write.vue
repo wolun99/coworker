@@ -77,4 +77,25 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+button {
+	display: inline-block;
+	align-items: center;
+	width: 300px;
+	justify-content: center;
+	text-align: center;
+	min-width: 110px;
+	padding: 0 20px;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	height: 60px;
+	color: #fff;
+	background: #3090d6;
+	margin-top: 60px;
+	font-size: 23px;
+	margin-left: 20px;
+}
+label {
+	display: inline-block;
+}
+</style>

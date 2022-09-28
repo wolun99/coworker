@@ -41,18 +41,25 @@ export default {
 		};
 	},
 	methods: {
-		Login() {
+		async Login() {
 			const auth = getAuth();
-			signInWithEmailAndPassword(auth, this.userId, this.userPassword)
-				.then(userData => {
-					alert('로그인 하셨습니다');
-					// this.$router.push('/');
-					this.getUserName(userData);
-					this.loginContinue();
-					this.userNameVal(userData);
+			await setPersistence(auth, browserSessionPersistence)
+				.then(() => {
+					return signInWithEmailAndPassword(
+						auth,
+						this.userId,
+						this.userPassword,
+					).then(userData => {
+						alert('로그인하셨습니다');
+						this.getUserName(userData);
+						this.userNameVal(userData);
+					});
 				})
-				.catch(() => {
-					alert('정보를 확인해주세요');
+				.catch(error => {
+					// Handle Errors here.
+					const errorMessage = error.message;
+					console.log(errorMessage);
+					alert('정보를 확인하세요');
 				});
 		},
 		getUserName(userData) {
@@ -65,24 +72,10 @@ export default {
 				this.$router.push('/');
 			}
 		},
-		loginContinue() {
-			const auth = getAuth();
-			setPersistence(auth, browserSessionPersistence)
-				.then(() => {
-					return signInWithEmailAndPassword(
-						auth,
-						this.userId,
-						this.userPassword,
-					);
-				})
-				.catch(error => {
-					// Handle Errors here.
-					const errorCode = error.code;
-					console.log(errorCode);
-					const errorMessage = error.message;
-					console.log(errorMessage);
-				});
-		},
+	},
+	mounted() {
+		const auth = getAuth();
+		console.log(auth);
 	},
 };
 </script>
