@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="comment_wrap">
-			<form action="" @submit.prevent="submitForm">
+			<form action="" @submit.prevent="submitForm" @click="logIned()">
 				<input
 					type="text"
 					placeholder="댓글을 입력해주세요"
@@ -47,6 +47,10 @@ export default {
 	},
 	methods: {
 		async submitComment() {
+			if (this.comment == '') {
+				alert('내용을 입력해주세요');
+				return;
+			}
 			this.addComment();
 			const commentRef = collection(db, 'comment');
 			await setDoc(doc(commentRef, `comment ${this.userid}`), {
@@ -74,7 +78,6 @@ export default {
 		async addCommentList() {
 			const docRef = doc(db, 'comment', `comment ${this.userid}`);
 			const result = await getDoc(docRef);
-			console.log(result.data().comment);
 			if (result.data().comment !== undefined) {
 				this.userComment = result.data().comment;
 			} else {
@@ -98,6 +101,12 @@ export default {
 				this.addCommentList();
 			});
 		},
+		logIned() {
+			if (!this.$store.getters.isLogined) {
+				alert('로그인이 필요합니다');
+				this.$router.push('/login');
+			}
+		},
 	},
 	mounted() {
 		this.getContentId();
@@ -106,4 +115,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+form {
+	width: 730px;
+	margin: 0 auto;
+}
+</style>

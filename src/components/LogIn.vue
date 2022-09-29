@@ -73,10 +73,6 @@ export default {
 			}
 		},
 	},
-	mounted() {
-		const auth = getAuth();
-		console.log(auth);
-	},
 };
 </script>
 

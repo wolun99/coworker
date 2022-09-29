@@ -84,17 +84,28 @@ a{
   cursor: pointer;
 }
 
+.btn_wrap{
+  margin-top: 90px;
+}
+
+
+
 .list_wrap{
   width:250px;
   height:300px;
-  border: 1px solid #000;
   display: inline-block;
   margin-top:40px;
   margin-right:65px;
+  -webkit-box-shadow: 7px 6px 23px 0px rgb(0 0 0 / 50%);
+  -moz-box-shadow: 7px 6px 23px 0px rgba(0,0,0,0.5);
+  box-shadow: 7px 6px 23px 0px rgb(0 0 0 / 50%);
+  padding:20px;
 }
 
 .list_wrap:hover{
   cursor: pointer;
+  box-shadow: 1px 1px 1px 1px rgb(0 0 0 / 50%);
+  transition: 0.3s;
 }
 
 .list_wrap:nth-child(4n){
