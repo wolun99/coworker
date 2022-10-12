@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="write_tab">
-			<button @click="goWrite()">글쓰러가기</button>
+			<button @click="goWrite">글쓰러가기</button>
 		</div>
 		<div class="inner">
 			<HomeList
@@ -11,7 +11,7 @@
 				:key="list"
 			></HomeList>
 			<div class="btn_wrap">
-				<button v-if="btnPlus" @click="listItemPlus()">더보기</button>
+				<button v-if="btnPlus" @click="listItemPlus">더보기</button>
 			</div>
 		</div>
 	</div>

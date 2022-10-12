@@ -7,7 +7,7 @@
 					placeholder="댓글을 입력해주세요"
 					v-model="comment"
 				/>
-				<button @click="submitComment()">등록</button>
+				<button @click="submitComment">등록</button>
 			</form>
 		</div>
 		<CommentList
@@ -15,7 +15,7 @@
 			:comments="comments"
 			v-for="(comments, i) in userComment"
 			:key="i"
-			@deleteComment="deleteComment(), (commentIndex = $event)"
+			@deleteComment="deleteComment, (commentIndex = $event)"
 		></CommentList>
 	</div>
 </template>

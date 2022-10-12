@@ -2,7 +2,7 @@
 	<div class="commentList_wrap">
 		<span class="comment_id">{{ comments.usernick }}</span>
 		<span class="comment_content">{{ comments.comment }}</span>
-		<button @click="deleteComment()">삭제</button>
+		<button @click="deleteComment">삭제</button>
 	</div>
 </template>
 

@@ -20,7 +20,7 @@
 					autoComplete="off"
 					v-model="userPassword"
 				/>
-				<button @click="Login()">로그인</button>
+				<button @click="Login">로그인</button>
 			</form>
 		</div>
 	</div>

@@ -20,7 +20,7 @@
 					autoComplete="off"
 					v-model="userPassword"
 				/>
-				<button @click="signUp()">회원가입</button>
+				<button @click="signUp">회원가입</button>
 			</form>
 		</div>
 	</div>

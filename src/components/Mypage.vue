@@ -11,7 +11,7 @@
 					v-model="userNick"
 					placeholder="사용하실 닉네임을 입력해주세요"
 				/>
-				<button @click="nickNameRegi()">닉네임 등록</button>
+				<button @click="nickNameRegi">닉네임 등록</button>
 			</form>
 		</div>
 	</div>

@@ -1,5 +1,5 @@
 <template>
-	<div class="list_wrap" @click="goDetail()">
+	<div class="list_wrap" @click="goDetail">
 		<h4>{{ list.title }}</h4>
 		<span>{{ list.nickname }}</span>
 	</div>

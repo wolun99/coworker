@@ -14,7 +14,7 @@
 			<button v-if="content.uid == $store.state.userUid" @click="deleteList()">
 				삭제하기
 			</button>
-			<button @click="goMain()">목록으로</button>
+			<button @click="goMain">목록으로</button>
 		</div>
 	</div>
 </template>

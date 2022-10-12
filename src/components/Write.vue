@@ -17,8 +17,8 @@
 				</textarea>
 			</div>
 			<div class="btn_wrap">
-				<button @click="submitContent()">등록하기</button>
-				<button @click="cancelWrite()">취소하기</button>
+				<button @click="submitContent">등록하기</button>
+				<button @click="cancelWrite">취소하기</button>
 			</div>
 		</form>
 	</div>
